@@ -24,7 +24,7 @@ def get_stored_data_length(filename):
         prev_data.clear()
 
     return l
-g = Github("1e0ed5dc9fdccd2faa1c055510baf0c9b294f790") # empty param here : github access token 
+g = Github("") # empty param here : github access token 
 repo = g.get_repo("microsoft/vscode")
 issues = repo.get_issues(labels = ["feature-request"], state = "all")
 data = []
