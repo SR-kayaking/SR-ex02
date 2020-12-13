@@ -17,12 +17,14 @@
 
 
 
-`data.py`整理`data.json`中的reactions，并统计其中positive reactions的数量，生成`train_data.txt`文件
+## 排序部分说明
+
+`data.py`整理`data.json`中的reactions，统计其中positive reactions的数量，并据此划分排序等级，生成`data.txt`文件。
 
 数据格式为
 
 ```
-[title] [positive reactions count]
+[positive reactions count] [level] [title]
 ```
 
 
