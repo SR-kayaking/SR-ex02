@@ -11,7 +11,11 @@
 ```json
 {
     "title": 标题,
-    "reactions":[]
+    "createdAt":issue创建时间,
+    "state":issue状态，open或closed,
+    "number":issue编号(方便查找，与分级算法无关),
+    "commentNum":评论数,
+    "voteNum":得票数,
 }
 ```
 

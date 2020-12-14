@@ -22,13 +22,21 @@ def get_stored_data_length(filename):
             prev_data = []
         l = len(prev_data)
         prev_data.clear()
-
     return l
-g = Github("") # empty param here : github access token 
+
+def count_upvote(reactions):
+    count = 0
+    for r in reactions :
+        if r == '+1' :
+            count += 1
+    return count 
+
+    
+g = Github("1e0ed5dc9fdccd2faa1c055510baf0c9b294f790") # empty param here : github access token 
 repo = g.get_repo("microsoft/vscode")
 issues = repo.get_issues(labels = ["feature-request"], state = "all")
 data = []
-filename = 'data.json'
+filename = 'new_data.json'
 ts = time.time()
 
 start_pos = get_stored_data_length(filename)
@@ -39,7 +47,11 @@ for issue in issues[start_pos:]:
     try:
         data.append({
             "title": issue.title,
-            "reactions": [reaction.content for reaction in issue.get_reactions()]
+            "createdAt": issue.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            "state": issue.state,
+            "number": issue.number,
+            "commentNum": issue.comments,
+            "voteNum": count_upvote([reaction.content for reaction in issue.get_reactions()])
         })
     except RateLimitExceededException as RE:
         save_in_file(filename,data)
@@ -50,6 +62,7 @@ for issue in issues[start_pos:]:
         save_in_file(filename,data)
         data.clear()
         print("timeout exception, previous data has been stored, please restart the program")
+        exit(0)
     te = time.time()
     print('{} issues got, time: {}'.format(count,te-ts))
     ts = te
