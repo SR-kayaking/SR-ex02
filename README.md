@@ -4,7 +4,7 @@
 
 >依赖库：`PyGithub`
 
-`spider.py`通过调用Github API爬取[vscode仓库](https://github.com/microsoft/vscode/)下所有tag为`feature-request`的issue，并存储在`data.json`中
+`spider.py`通过调用Github API爬取[vscode仓库](https://github.com/microsoft/vscode/)下所有tag为`feature-request`的issue，并存储在`new_data.json`中
 
 数据格式为
 
